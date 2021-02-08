@@ -8,4 +8,10 @@ There are multiple possible comparison points from influential artists to song f
 
 There are multiple tracks to keep in mind, such as A Cruel Angel's Thesis (1995) and Hare Hare Yukai (2006). These tracks were not only successful but also said to have established new styles of anime songs. 
 
+Links to the Spotify playlists:
+* [Anime Rewind '80s](https://open.spotify.com/playlist/37i9dQZF1DXcFCZS9poESZ?si=X78joBOfSNybC2_h2ywCBQ)
+* [Anime Rewind '90s](https://open.spotify.com/playlist/37i9dQZF1DXanOaZVFiwtB?si=cBGaz_VxRRW14iXdNAFQ8g)
+* [Anime Rewind '00s](https://open.spotify.com/playlist/37i9dQZF1DWZZu9JWZK2dy?si=wPjUpf9pSSST3NhlYnkxjQ)
+* [Anime Rewind '10s](https://open.spotify.com/playlist/37i9dQZF1DWYzHfIcEruXw?si=77LFyMfiSLSIwtcEN66MHw)
+
 ---
