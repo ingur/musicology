@@ -6,7 +6,7 @@ Spotify released four playlists called "Anime Rewind" for every decade between t
 
 There are multiple possible comparison points from influential artists to song features like `danceability` and `energy`. The corpus includes most of the popular hit songs and seems to cover the genre appropriately. The only limitations are that there are no songs from the '60s and '70s, and there might still be a few tracks left that are not included in the original playlists by Spotify.
 
-There are multiple tracks to keep in mind, such as A Cruel Angel's Thesis (1995) and Hare Hare Yukai (2006). These tracks were not only successful but also said to have established new styles of anime songs. 
+There are multiple tracks to keep in mind, such as A Cruel Angel's Thesis (1995) and Hare Hare Yukai (2006). These tracks were not only successful but are also said to have established new styles of anime songs. 
 
 Links to the Spotify playlists:
 * [Anime Rewind '80s](https://open.spotify.com/playlist/37i9dQZF1DXcFCZS9poESZ?si=X78joBOfSNybC2_h2ywCBQ)
