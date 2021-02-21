@@ -6,6 +6,7 @@ output:
   flexdashboard::flex_dashboard:
     vertical_layout: fill
     orientation: columns
+    storyboard: true
     theme: journal
 ---
 
@@ -22,12 +23,10 @@ library(dplyr)
 theme_set(theme_hc())
 ```
 
-Column
---------------------------------------------------------------------------------
+Introduction
+=========================================
 
 > <center>PLEASE DO NOT SHOW THIS PORTFOLIO IN CLASS</center>
-
-### **Anime Music**
 
 Japanese animation - also known as Anime - has grown immensely as both an industry and art form over the years. Music has played a big part in this growth, as the intro and credits have always been accompanied by a song. First appearing in 1963 together with the release of Astro Boy, anime music quickly developed into a musical genre in its own right. 
 Spotify released four playlists called "Anime Rewind" for every decade between the '80s and the '10s.  These playlists make up the corpus of 181 selected hit songs released during this time. My main goal is to analyze how anime music has evolved over the years, and I believe this corpus allows me to do so. 
@@ -43,8 +42,9 @@ Links to the Spotify playlists:
 - [Anime Rewind '00s](https://open.spotify.com/playlist/37i9dQZF1DWZZu9JWZK2dy?si=wPjUpf9pSSST3NhlYnkxjQ)
 - [Anime Rewind '10s](https://open.spotify.com/playlist/37i9dQZF1DWYzHfIcEruXw?si=77LFyMfiSLSIwtcEN66MHw)
 
-Column
---------------------------------------------------------------------------------
+ 
+Visualization {.storyboard}
+=========================================
 
 ### Danceability per decennia
 
@@ -63,6 +63,11 @@ danceability_plot <- anime %>%
 
 ggplotly(danceability_plot)
 ```
+
+***
+
+Commentary Here
+
 ### Loudness per decennia
 
 ```{r, echo=FALSE}
@@ -80,4 +85,14 @@ loudness_plot <- anime %>%
 
 ggplotly(loudness_plot)
 ```
+
+***
+
+Commentary Here
+
+
+Discussion
+=========================================
+
+Discussion Here
 
