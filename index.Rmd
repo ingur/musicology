@@ -15,7 +15,10 @@ knitr::opts_chunk$set(echo = TRUE)
 load("anime.RDATA")
 
 library(flexdashboard)
+library(tidyverse)
+library(spotifyr)
 library(ggthemes)
+library(compmus)
 library(ggplot2)
 library(plotly)
 library(dplyr)
@@ -23,28 +26,116 @@ library(dplyr)
 theme_set(theme_hc())
 ```
 
-Introduction
-=========================================
-
-> <center>PLEASE DO NOT SHOW THIS PORTFOLIO IN CLASS</center>
-
-Japanese animation - also known as Anime - has grown immensely as both an industry and art form over the years. Music has played a big part in this growth, as the intro and credits have always been accompanied by a song. First appearing in 1963 together with the release of Astro Boy, anime music quickly developed into a musical genre in its own right. 
-Spotify released four playlists called "Anime Rewind" for every decade between the '80s and the '10s.  These playlists make up the corpus of 181 selected hit songs released during this time. My main goal is to analyze how anime music has evolved over the years, and I believe this corpus allows me to do so. 
-
-There are multiple possible comparison points from influential artists to song features like `danceability` and `energy`/`loudness`. The corpus includes most of the popular hit songs and seems to cover the genre appropriately. The only limitations are that there are no songs from the '60s and '70s, and there might still be a few tracks left that are not included in the original playlists by Spotify.
-
-There are multiple tracks to keep in mind, such as A Cruel Angel's Thesis (1995) and Hare Hare Yukai (2006). These tracks were not only successful but are also said to have established new styles of anime songs. 
-
-Links to the Spotify playlists:
-
-- [Anime Rewind '80s](https://open.spotify.com/playlist/37i9dQZF1DXcFCZS9poESZ?si=X78joBOfSNybC2_h2ywCBQ)
-- [Anime Rewind '90s](https://open.spotify.com/playlist/37i9dQZF1DXanOaZVFiwtB?si=cBGaz_VxRRW14iXdNAFQ8g)
-- [Anime Rewind '00s](https://open.spotify.com/playlist/37i9dQZF1DWZZu9JWZK2dy?si=wPjUpf9pSSST3NhlYnkxjQ)
-- [Anime Rewind '10s](https://open.spotify.com/playlist/37i9dQZF1DWYzHfIcEruXw?si=77LFyMfiSLSIwtcEN66MHw)
-
- 
 Visualization {.storyboard}
 =========================================
+
+### What is the structure of 'A Cruel Angel's Thesis' [chroma and timbre features]
+
+```{r, echo=FALSE}
+evangelion <-
+  get_tidy_audio_analysis("3dDZFJSvdT9N2nNAdsE9j2") %>%
+  compmus_align(bars, segments) %>%
+  select(bars) %>%
+  unnest(bars) %>%
+  mutate(
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "acentre", norm = "manhattan"
+      )
+  ) %>%
+  mutate(
+    timbre =
+      map(segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  )
+
+bind_rows(
+  evangelion %>% 
+    compmus_self_similarity(pitches, "aitchison") %>% 
+    mutate(d = d / max(d), type = "Chroma"),
+  evangelion %>% 
+    compmus_self_similarity(timbre, "euclidean") %>% 
+    mutate(d = d / max(d), type = "Timbre")
+) %>%
+  mutate() %>% 
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  facet_wrap(~type) +
+  scale_fill_viridis_c(option = "E", guide = "none") +
+  theme_classic() + 
+  labs(x = "", y = "")
+```
+
+***
+
+TODO: Experiment further with parameters
+TODO: Further analysis
+
+Timestamps of interest:
+
+- The "Angel Voices" 0-14 (0:00-0:14)
+- The chorus "Teaser" 15-22 (0:15-0:22)
+- The first chorus 68-90 (1:08-1:30)
+- The shorter second chorus 120-135 (2:00-2:15)
+- The third chorus 180-202 (3:00-3:22)
+- The final chorus 218-240 (3:38-4:00)
+
+(The verses and pre-chorus in between)
+
+
+### What is the structure of 'A Cruel Angel's Thesis' [chromagram]
+
+```{r, echo=FALSE}
+evangelion %>%
+  mutate(pitches = map(pitches, compmus_normalise, "euclidean")) %>%
+  compmus_gather_chroma() %>% 
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = pitch_class,
+      fill = value
+    )
+  ) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
+  theme_minimal() +
+  scale_fill_viridis_c()
+```
+
+***
+
+TODO: Closer inspect individual parts of the song in multiple plots.
+
+The song is written in C minor.
+
+The intro chorus progression is: C-F-Bb-Eb-C-F-Bb-Ab
+The main chorus progression is:  C-F-Bb-Eb-C-F-Bb-C
+
+The verse chord progression is: Eb-Bb-C-Bb-Ab and Bb-Eb-C-D-F-G
+The pre-chorus progression is: Ab-G-C-F-Bb-Bb-Eb
+
+The Intro chorus is essentialy a shorter and more quiet version of the main chorus, 
+and acts like a teaser that only gives a small taste of the real chorus.
+
+Both the verse and pre-chorus trick us into thinking the chorus is coming by not
+resolving the unstable chords to where we expect them to go (the C "release" tonic).
+This leaves us hearing the G (dominant) chord that builds tension being prolonged 
+by the Eb and Ab tension chords (mediant and submediant), further keeping us interested
+and making us want the chorus even more.
+
 
 ### Danceability per decennia
 
@@ -89,6 +180,30 @@ ggplotly(loudness_plot)
 ***
 
 Commentary Here
+
+TODO: Look into "Loudness Wars"
+
+
+Introduction
+=========================================
+
+> <center>PLEASE DO NOT SHOW THIS PORTFOLIO IN CLASS</center>
+
+Japanese animation - also known as Anime - has grown immensely as both an industry and art form over the years. Music has played a big part in this growth, as the intro and credits have always been accompanied by a song. First appearing in 1963 together with the release of Astro Boy, anime music quickly developed into a musical genre in its own right. 
+Spotify released four playlists called "Anime Rewind" for every decade between the '80s and the '10s.  These playlists make up the corpus of 181 selected hit songs released during this time. My main goal is to analyze how anime music has evolved over the years, and I believe this corpus allows me to do so. 
+
+There are multiple possible comparison points from influential artists to song features like `danceability` and `energy`/`loudness`. The corpus includes most of the popular hit songs and seems to cover the genre appropriately. The only limitations are that there are no songs from the '60s and '70s, and there might still be a few tracks left that are not included in the original playlists by Spotify.
+
+There are multiple tracks to keep in mind, such as A Cruel Angel's Thesis (1995) and Hare Hare Yukai (2006). These tracks were not only successful but are also said to have established new styles of anime songs. 
+
+Links to the Spotify playlists:
+
+- [Anime Rewind '80s](https://open.spotify.com/playlist/37i9dQZF1DXcFCZS9poESZ?si=X78joBOfSNybC2_h2ywCBQ)
+- [Anime Rewind '90s](https://open.spotify.com/playlist/37i9dQZF1DXanOaZVFiwtB?si=cBGaz_VxRRW14iXdNAFQ8g)
+- [Anime Rewind '00s](https://open.spotify.com/playlist/37i9dQZF1DWZZu9JWZK2dy?si=wPjUpf9pSSST3NhlYnkxjQ)
+- [Anime Rewind '10s](https://open.spotify.com/playlist/37i9dQZF1DWYzHfIcEruXw?si=77LFyMfiSLSIwtcEN66MHw)
+
+ 
 
 
 Discussion
