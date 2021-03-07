@@ -264,18 +264,19 @@ There are multiple tracks to keep in mind, such as A Cruel Angel's Thesis (1995)
 Links to the Spotify playlists:
 
 
-<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcFCZS9poESZ" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+<!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcFCZS9poESZ" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
 
-<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXanOaZVFiwtB" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+<!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXanOaZVFiwtB" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
 
-<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWZZu9JWZK2dy" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+<!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWZZu9JWZK2dy" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
 
-<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWYzHfIcEruXw" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+<!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWYzHfIcEruXw" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
 
-<!-- - [Anime Rewind '80s](https://open.spotify.com/playlist/37i9dQZF1DXcFCZS9poESZ?si=X78joBOfSNybC2_h2ywCBQ) -->
-<!-- - [Anime Rewind '90s](https://open.spotify.com/playlist/37i9dQZF1DXanOaZVFiwtB?si=cBGaz_VxRRW14iXdNAFQ8g) -->
-<!-- - [Anime Rewind '00s](https://open.spotify.com/playlist/37i9dQZF1DWZZu9JWZK2dy?si=wPjUpf9pSSST3NhlYnkxjQ) -->
-<!-- - [Anime Rewind '10s](https://open.spotify.com/playlist/37i9dQZF1DWYzHfIcEruXw?si=77LFyMfiSLSIwtcEN66MHw) -->
+
+- [Anime Rewind '80s](https://open.spotify.com/playlist/37i9dQZF1DXcFCZS9poESZ?si=X78joBOfSNybC2_h2ywCBQ)
+- [Anime Rewind '90s](https://open.spotify.com/playlist/37i9dQZF1DXanOaZVFiwtB?si=cBGaz_VxRRW14iXdNAFQ8g)
+- [Anime Rewind '00s](https://open.spotify.com/playlist/37i9dQZF1DWZZu9JWZK2dy?si=wPjUpf9pSSST3NhlYnkxjQ)
+- [Anime Rewind '10s](https://open.spotify.com/playlist/37i9dQZF1DWYzHfIcEruXw?si=77LFyMfiSLSIwtcEN66MHw)
 
 
 
