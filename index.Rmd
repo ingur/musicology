@@ -29,6 +29,82 @@ theme_set(theme_hc())
 Visualization {.storyboard}
 =========================================
 
+
+### Tempogram of 'A Cruel Angel's Thesis' 
+
+
+```{r, echo=FALSE}
+
+evangelion <-
+  get_tidy_audio_analysis("3dDZFJSvdT9N2nNAdsE9j2") 
+
+evangelion %>%
+  tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) %>%
+  ggplot(aes(x = time, y = bpm, fill = power)) +
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +
+  labs(x = "Time (s)", y = "Tempo (BPM)") +
+  theme_classic()
+```
+
+***
+
+The Fourier-based tempogram of A Cruel Angel's Thesis shows that the tempo is 
+pretty much constant throughout the whole song. Spotify correctly estimates the
+tempo of this track at 128 bpm. In fact, almost all anime songs seem to follow a 
+constant tempo. (not sure how I would properly show this without having to spend 
+a huge amount of time plotting data for multiple songs though)
+
+TODO: try to format multiple tempograms on one page for an easier comparison
+
+
+### Tempogram of Dang Dang (80s)
+
+
+```{r, echo=FALSE}
+
+evangelion <-
+  get_tidy_audio_analysis("11YTv3GEL4jjdjhiql2UP2") 
+
+evangelion %>%
+  tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) %>%
+  ggplot(aes(x = time, y = bpm, fill = power)) +
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +
+  labs(x = "Time (s)", y = "Tempo (BPM)") +
+  theme_classic()
+```
+
+***
+
+Even in the 80s the tempo of most anime songs is constant throughout the whole
+song and pretty easy for spotify to estimate and detect.
+
+### Tempogram of Unravel (10s)
+
+
+```{r, echo=FALSE}
+
+evangelion <-
+  get_tidy_audio_analysis("5orAKrVdrk1kPtTa7zNvYL") 
+
+evangelion %>%
+  tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) %>%
+  ggplot(aes(x = time, y = bpm, fill = power)) +
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +
+  labs(x = "Time (s)", y = "Tempo (BPM)") +
+  theme_classic()
+```
+
+***
+
+This is a pretty rare example of a modern anime song that is a bit harder to estimate.
+The song contains a few complex rhythmic guitar solos and drum parts. The guitar
+solo at 120-145 seconds (2:00-2:25) is almost impossible to estimate using this 
+tempogram.
+
+
 ### What is the structure of 'A Cruel Angel's Thesis' [tonal analysis]
 
 ```{r, echo=FALSE}
