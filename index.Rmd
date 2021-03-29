@@ -42,7 +42,7 @@ Introduction
 Japanese animation - also known as Anime - has grown immensely as both an industry and art form over the years. Music has played a big part in this growth, as the intro and credits have always been accompanied by a song. First appearing in 1963 together with the release of Astro Boy, anime music quickly developed into a musical genre in its own right. 
 Spotify released four playlists called "Anime Rewind" for every decade between the '80s and the '10s.  These playlists make up the corpus of 181 selected hit songs released during this time. My main goal is to analyze how anime music has evolved over the years, and I believe this corpus allows me to do so. 
 
-There are multiple possible comparison points from influential artists to song features like `danceability` and `energy`/`loudness`. The corpus includes most of the popular hit songs and seems to cover the genre appropriately. The only limitations are that there are no songs from the '60s and '70s, and there might still be a few tracks left that are not included in the original playlists by Spotify.
+There are multiple possible comparison points from influential artists to song features like `danceability` and `speechiness`/`loudness`. The corpus includes most of the popular hit songs and seems to cover the genre appropriately. The only limitations are that there are no songs from the '60s and '70s, and there might still be a few tracks left that are not included in the original playlists by Spotify.
 
 There are multiple tracks to keep in mind, such as 'A Cruel Angel's Thesis' (1995) and 'Hare Hare Yukai' (2006). These tracks were not only successful but are also said to have established new styles of Anime songs. We will pay close attention to these songs, as well as 'Touch' (1985) and 'Crossing Field' (2012) since both songs were very popular and because I loved watching both shows while growing up. 
 
@@ -73,13 +73,10 @@ Links to the Spotify playlists:
 
 <!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWYzHfIcEruXw" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
 
-- [Anime Rewind '80s](https://open.spotify.com/playlist/37i9dQZF1DXcFCZS9poESZ?si=X78joBOfSNybC2_h2ywCBQ)
-- [Anime Rewind '90s](https://open.spotify.com/playlist/37i9dQZF1DXanOaZVFiwtB?si=cBGaz_VxRRW14iXdNAFQ8g)
-- [Anime Rewind '00s](https://open.spotify.com/playlist/37i9dQZF1DWZZu9JWZK2dy?si=wPjUpf9pSSST3NhlYnkxjQ)
-- [Anime Rewind '10s](https://open.spotify.com/playlist/37i9dQZF1DWYzHfIcEruXw?si=77LFyMfiSLSIwtcEN66MHw)
-
-
-
+<!-- - [Anime Rewind '80s](https://open.spotify.com/playlist/37i9dQZF1DXcFCZS9poESZ?si=X78joBOfSNybC2_h2ywCBQ) -->
+<!-- - [Anime Rewind '90s](https://open.spotify.com/playlist/37i9dQZF1DXanOaZVFiwtB?si=cBGaz_VxRRW14iXdNAFQ8g) -->
+<!-- - [Anime Rewind '00s](https://open.spotify.com/playlist/37i9dQZF1DWZZu9JWZK2dy?si=wPjUpf9pSSST3NhlYnkxjQ) -->
+<!-- - [Anime Rewind '10s](https://open.spotify.com/playlist/37i9dQZF1DWYzHfIcEruXw?si=77LFyMfiSLSIwtcEN66MHw) -->
 
 Track-level {.storyboard}
 =========================================
@@ -106,8 +103,42 @@ ggplotly(danceability_plot)
 
 ***
 
-Commentary Here
+Let us first take a look at the average `danceability`. 
+As we can see in the plot there has been a slight decline on average the past 
+four decades. Spotify bases the `danceability` score on a combination of musical
+elements including tempo, rhythm stability, beat strength, and overall regularity.
+A value of 1.0 indicates a most danceable song. I initially believed rhythm stability
+was the deciding factor, since anime songs, especially those from the 80s and 90s, 
+are well known for having a very stable beat (on average). We will analyse this 
+further during our temporal analysis.
 
+### Speechiness per decennia
+
+```{r, echo=FALSE}
+speechiness_plot <- anime %>%
+  ggplot(aes(category, speechiness)) +
+    geom_boxplot(aes(fill = category)) + 
+    labs(
+      title = "Speechiness per decennia",
+      x = NULL,
+      y = NULL
+    ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.5)
+  )
+
+ggplotly(speechiness_plot)
+```
+
+***
+
+As we can see in this plot, `speechiness` has increased on average over the past 4 
+decades. However, not by much. `speechiness` indicates the presence of spoken words
+in a track. Talk-shows usually score high values above 0.66, while most rap songs tend 
+to get a score between 0.33 and 0.66. Interestingly enough, not a single song in our corpus got a 
+value above 0.30.
 
 ### Loudness per decennia
 
@@ -131,9 +162,10 @@ ggplotly(loudness_plot)
 
 ***
 
-Commentary Here
-
-TODO: Look into "Loudness Wars"
+As a direct result of the so-called 'Loudness war', the overall `loudness` in decibels (dB)
+has increased steadily. The average `loudness` in anime music has has gone from almost -7 to nearly -3 dB.
+The Loudness war affected almost every music genre starting as early as the 1940s, so it is not a surprise
+to see this effect apply to anime songs as well.
 
 
 Chroma Features {.storyboard}
@@ -269,7 +301,9 @@ touch_chromagram
 </object>
 ```
 
-Oega boega
+Touch was the first opening song for the anime with the same name that aired from 1985 to 1987. The song is written in the key of B Minor.
+The main chord progression is B-Em-A-D-F# and stays fairly consistent throughout the song, with the occasional G and C# chord being played instead of the 
+F# chord for some variety to keep the listener interesting. Truly a consistent anime song as is characteristic for the 80s.
 
 ### Chromagram of 'A Cruel Angel's Thesis' (90s)
 
@@ -286,16 +320,10 @@ evangelion_chromagram
 </object>
 ```
 
-TODO: Closer inspect individual parts of the song in multiple plots.
-
-The song is written in C minor.
-
-The intro chorus progression is: C-F-Bb-Eb-C-F-Bb-Ab
-The main chorus progression is:  C-F-Bb-Eb-C-F-Bb-C
-
-The verse chord progression is: Eb-Bb-C-Bb-Ab and Bb-Eb-C-D-F-G
-The pre-chorus progression is: Ab-G-C-F-Bb-Bb-Eb
-
+This is one of, if not the most famous anime song to have ever been created, 
+and appears as the opening song in "Neon Genesis Evangelion". Can the chord progression 
+help explain why this song is considered to be such a classic?
+The song is written in C minor, and is correctly identified by spotify. 
 The Intro chorus is essentialy a shorter and more quiet version of the main chorus,
 and acts like a teaser that only gives a small taste of the real chorus.
 
@@ -303,7 +331,16 @@ Both the verse and pre-chorus trick us into thinking the chorus is coming by not
 resolving the unstable chords to where we expect them to go (the C "release" tonic).
 This leaves us hearing the G (dominant) chord that builds tension being prolonged
 by the Eb and Ab tension chords (mediant and submediant), further keeping us interested
-and making us want the chorus even more.
+and making us want the chorus even more. It's this way of teasing the listener that 
+keeps having people come back to this song even 26 years later.
+
+The intro chorus progression is: C-F-Bb-Eb-C-F-Bb-Ab
+
+The main chorus progression is:  C-F-Bb-Eb-C-F-Bb-C
+
+The verse chord progression is: Eb-Bb-C-Bb-Ab and Bb-Eb-C-D-F-G
+
+The pre-chorus progression is: Ab-G-C-F-Bb-Bb-Eb
 
 ### Chromagram of 'Hare Hare Yukai' (00s)
 
@@ -320,7 +357,10 @@ hare_hare_chromagram
 </object>
 ```
 
-hare hare comments
+This is an ending song of the anime "The Melancholy of Haruhi Suzumiya" that aired in 2006. What makes this song so special
+is that it is the first anime theme ever that had the characters dance to it during the ending credits. This sparked a whole
+new subgenre of anime idol songs that really exploded in the 10s. The song is written in Ab Major but really plays around the 
+dominant (V) C chord a lot, which also shows up a lot in the chordogram. 
 
 ### Chromagram of 'Crossing Field' (10s)
 
@@ -337,7 +377,9 @@ crossing_chromagram
 </object>
 ```
 
-crossing comments
+This is personally one of my favorite songs in the corpus, simply because it was the first anime song I really listened to. 
+The song is written in F Major, which can also be faintly seen in the chordogram. Spotify is not as sure as with the other songs here.
+The song also has a part where it mostly plays in A# because of a guitar solo. 
 
 Self-Similarity {.storyboard}
 =========================================
@@ -391,9 +433,7 @@ Self-Similarity {.storyboard}
 #   theme_minimal() +
 #   labs(x = NULL, y = NULL, title = "'Touch' (80s)") +
 #   theme(
-#     plot.title = element_text(hjust = 0.5),
-#     strip.background = element_blank(),
-#     strip.text.x = element_blank()
+#     plot.title = element_text(hjust = 0.5)
 #   )
 # 
 # evangelion_chroma_timbre <-
@@ -422,9 +462,7 @@ Self-Similarity {.storyboard}
 #   theme_minimal() +
 #   labs(x = NULL, y = NULL, title = "'A Cruel Angel's Thesis' (90s)") +
 #   theme(
-#     plot.title = element_text(hjust = 0.5),
-#     strip.background = element_blank(),
-#     strip.text.x = element_blank()
+#     plot.title = element_text(hjust = 0.5)
 #   )
 # 
 # hare_hare_chroma_timbre <-
@@ -453,9 +491,7 @@ Self-Similarity {.storyboard}
 #   theme_minimal() +
 #   labs(x = NULL, y = NULL, title = "'Hare Hare Yukai' (00s)") +
 #   theme(
-#     plot.title = element_text(hjust = 0.5),
-#     strip.background = element_blank(),
-#     strip.text.x = element_blank()
+#     plot.title = element_text(hjust = 0.5)
 #   )
 # 
 # crossing_chroma_timbre <-
@@ -485,8 +521,6 @@ Self-Similarity {.storyboard}
 #   labs(x = NULL, y = NULL, title = "'Crossing Field' (10s)") +
 #   theme(
 #     plot.title = element_text(hjust = 0.5),
-#     strip.background = element_blank(),
-#     strip.text.x = element_blank()
 #   )
 
 # ggarrange(touch_chroma_timbre, evangelion_chroma_timbre, hare_hare_chroma_timbre, crossing_chroma_timbre, nrow = 2, ncol = 2, common.legend = TRUE)
@@ -502,7 +536,11 @@ touch_chroma_timbre
 </object>
 ```
 
-comments
+The consistency of the 80s anime song really shows itself here again. 
+You can clearly see the returning chorus and verses in the diagonal lines, very
+nicely detected by Spotify. The bridge is also detected after the first main chorus
+(The 'cross' between around 75-95 seconds) in the Timbre matrix. These matrices are
+not very useful to compare the different decades though.
 
 ### Self-Similarity Matrices of 'A Cruel Angel's Thesis' (90s)
 
@@ -519,10 +557,7 @@ evangelion_chroma_timbre
 </object>
 ```
 
-TODO: Experiment further with parameters
-TODO: Further analysis
-
-Timestamps of interest:
+Timestamps you can identify:
 
 - The "Angel Voices" 0-14 (0:00-0:14)
 - The chorus "Teaser" 15-22 (0:15-0:22)
@@ -532,6 +567,9 @@ Timestamps of interest:
 - The final chorus 218-240 (3:38-4:00)
 
 (The verses and pre-chorus in between)
+
+The Angel voices at the start make up a big contrast for the rest of the self-similarity matrix since it's so different from the rest of the song.
+This pattern of having one very short and unique part in the song is pretty common as we will see in the other plots. 
 
 ### Self-similarity Matrices of 'Hare Hare Yukai' (00s)
 
@@ -548,7 +586,8 @@ hare_hare_chroma_timbre
 </object>
 ```
 
-comments
+This song is more like Touch, as it has a lot of consistent repeating parts that are easily recognizable. 
+It also has a very recognizable guitar solo that can be seen in the Timbre matrix at around 150 seconds.
 
 ### Self-Similarity Matrices of 'Crossing Field' (10s)
 
@@ -565,7 +604,9 @@ crossing_chroma_timbre
 </object>
 ```
 
-comments
+Just as with Hare Hare Yukai, this song has a very easily recognizable guitar solo bridge that can be easily seen
+around 175 seconds into the song. Other repeating parts are less visible as a result. This song also has a lot of unique 
+pre-chorus transitions and bridges that don't re-appear later in the song.
 
 Chord/Key Analysis {.storyboard}
 =========================================
@@ -605,7 +646,8 @@ touch_tonal
 </object>
 ```
 
-comments
+
+The keygram at the left shows the modulations in Touch. Segmentation is done according to Spotify’s estimates, and the distances represented are Aitchison distances from Spotify’s chroma vectors to the original Krumhansl–Kessler key profiles (1990). The key can be correctly identified from the keygram (Bb:min). 
 
 ### Tonal Analysis of 'A Cruel Angel's Thesis' (90s)
 
@@ -678,9 +720,7 @@ evangelion_tonal
 ```
 
 
-The keygram at the left shows the modulations in A Cruel Angels Thesis. Segmentation is done according to Spotify’s estimates, and the distances represented are Aitchison distances from Spotify’s chroma vectors to the original Krumhansl–Kessler key profiles (1990).
-
-(This is just to test Chordograms in general, I will include another important archetype in my corpus and add it as well)
+Due to the "Angel Voices" at the start of the song, Spotify has a harder time with this keygram. It makes it hard to see that the key is supposed to be C minor.
 
 ### Tonal Analysis of 'Hare Hare Yukai' (80s)
 
@@ -717,7 +757,7 @@ hare_hare_tonal
 </object>
 ```
 
-comments
+Same as with the previous song, the key (Ab Major) is hard to see because of the guitar solo part that picks up most of the intensity on the graph. 
 
 ### Tonal Analysis of 'Crossing Field' (80s)
 
@@ -754,7 +794,7 @@ crossing_tonal
 </object>
 ```
 
-comments
+This keygram got really weird, probably because of the long last guitar chord of the song that lasts for around 10 seconds until the end.
 
 Tempograms {.storyboard}
 =========================================
@@ -800,6 +840,11 @@ ani_tempo <- ani %>% mutate(
 ani_tempo
 ```
 
+***
+
+This plot mostly shows how consistent the tempo is throughout anime songs. You can also clearly see how the mean tempo has
+slightly increased over the past 40 years. This was hard to see when I initially plotted this in a single graph. 
+
 ### Tempogram of 'A Cruel Angel's Thesis' 
 
 
@@ -834,12 +879,7 @@ evangelion_tempogram
 
 The Fourier-based tempogram of A Cruel Angel's Thesis shows that the tempo is 
 pretty much constant throughout the whole song. Spotify correctly estimates the
-tempo of this track at 128 bpm. In fact, almost all anime songs seem to follow a 
-constant tempo. (not sure how I would properly show this without having to spend 
-a huge amount of time plotting data for multiple songs though)
-
-TODO: try to format multiple tempograms on one page for an easier comparison
-
+tempo of this track at 128 bpm. 
 
 ### Tempogram of Dang Dang (80s)
 
@@ -943,7 +983,10 @@ bepop_tempogram
 </object>
 ```
 
-bonus
+This is one of my favorite songs of all time, and I really wanted to analyse it.
+Unfortunately, I quickly realized I lacked some technical knowledge to properly 
+analyse the song in a way that does this song justice. I still wanted to include 
+it in my portfolio though, so I hope you enjoy it!
 
 Classification {.storyboard}
 =========================================
@@ -1130,18 +1173,16 @@ This Random Forest gives us the best-quality ranking of feature importance:
 #   )
 
 
-ani_forest %>% get_pr()
+# ani_forest %>% get_pr()
 
 ggarrange(ani_mosaic, ani_heatmap, legend = FALSE)
 ```
 
 ***
 
-This mosaic shows the performance of a nearest-neighbour classifier trying to distinguish the
-four playlists, after 10-fold cross-validation. The most imporant features are obtained using
+This mosaic shows the performance of a nearest-neighbor classifier trying to distinguish the
+four playlists, after 10-fold cross-validation. The most important features are obtained using
 a random-forest classifier (see next card).
-
-TODO: evaluate performance (accuracy, j-index)
 
 The classifier is pretty good at distinguishing anime music from the 80s and the 10s, but struggles
 with the 90s and 00s. This is to be expected as the genre evolved clearly but slowly over the years.
@@ -1150,5 +1191,6 @@ with the 90s and 00s. This is to be expected as the genre evolved clearly but sl
 Discussion
 =========================================
 
-Discussion Here
+Anime music has been growing steadily for the past 40 years, to the point that a lot of anime songs hit 
+mainstream media again just like it had when the anime had its first cultural explosion in the end 70s / early 80s. 
 
