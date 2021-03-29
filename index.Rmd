@@ -1137,12 +1137,12 @@ ggplotly(ani_forest_features)
 ```
 ***
 
-This Random Forest gives us the best-quality ranking of feature importance:
+This Random Forest gives us the best-quality ranking of feature  (after 10-fold cross validation):
 
 * Timbre Component 1 (loudness)
 * Loudness 
 * speechiness
-* Timbre Component 4 (?)
+* Timbre Component 4 (a stronger attack)
 * acousticness
 * energy
 
@@ -1185,12 +1185,19 @@ four playlists, after 10-fold cross-validation. The most important features are 
 a random-forest classifier (see next card).
 
 The classifier is pretty good at distinguishing anime music from the 80s and the 10s, but struggles
-with the 90s and 00s. This is to be expected as the genre evolved clearly but slowly over the years.
+mostly with the 90s and 00s. This was to be expected since the 90s were considered a transition period of sorts, 
+with more varied types of anime series coming out which required different kinds of anime music to complement it
+(Tank! and A Cruel Angel's Thesis being one of the most well-known examples). 
 
 
 Discussion
 =========================================
 
+> <center>PLEASE DO NOT SHOW THIS PORTFOLIO IN CLASS</center>
+
 Anime music has been growing steadily for the past 40 years, to the point that a lot of anime songs hit 
-mainstream media again just like it had when the anime had its first cultural explosion in the end 70s / early 80s. 
+mainstream media again just like it had when the anime had its first cultural explosion in the end 70s / early 80s. While the music has gotten louder,
+faster and arguably less 'danceable', anime music also contributed to the growth of multiple subgenres, most importantly Idol and J-Pop. I have learned a lot more from this analysis, especially how I only scratched the surface of the genre as a whole. For example, at first I wanted to include popular songs from Studio Ghibli in my analysis as they are one of the most distinguished production company and their musical compositions in anime movies are top notch.
+I quickly realized however that it is impossible to properly analyze it while also attempting to analyze the genre in general. I've also learned 
+a lot about the chord progressions that really 'define' Japanese anime music, including the well known IV-V7-iii-vi or simplified IV-V7-vi progression that has been featured in almost all mainstream Japenese anime songs since the beginning. Anime fans that are interested in the structure of popular anime songs could really benefit from this analysis, and continue this research with a more broad analysis of song structures found in modern anime songs. 
 
